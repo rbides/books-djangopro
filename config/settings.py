@@ -112,6 +112,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 
 DATABASES = {
+    # In PaaS sites such as Heroku, it is usual to receive the database information as
+    # a single URL environment variable, instead of several parameters (host, port, user, password...).
     "default": env.dj_db_url("DATABASE_URL")
 }
 
