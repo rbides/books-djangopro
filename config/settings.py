@@ -31,7 +31,7 @@ DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
 # When DEBUG = False, you must set ALLOWD_HOSTS,
 # which controls the specifc hosts or domains that can access the website
-ALLOWED_HOSTS = ['.herokyapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1',]
 
 
 # Application definition
