@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    #command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi -b 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-1v-n*-1a+9_$$w0)9fs9^vmu5w8e$$oqzp5az7=qcmuo(df#8g7("
+      - "DJANGO_SECURE_SSL_REDIRECT=False"
+      - "DJANGO_SECURE_HSTS_SECONDS=0"
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False"
+      - "DJANGO_SECURE_HSTS_PRELOAD=False"
+      - "SESSION_COOKIE_SECURE=False"
+      - "CSRF_COOKIE_SECURE=False"  
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:
